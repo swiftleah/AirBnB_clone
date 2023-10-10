@@ -39,4 +39,4 @@ class BaseModel:
     def __str__(self):
         """ string representation of BaseModel """
         class_name = self.__class__.__name__
-        return f'({class_name}, {self.id}, {self.__dict__})
+        return f'({class_name}, {self.id}, {self.__dict__})'
