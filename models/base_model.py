@@ -17,6 +17,6 @@ class BaseModel:
         self.created_at = datetime.now()
         self.updated_at = self.created_at
 
-    def time_updated(self):
+    def time_update(self):
         """ Defining time when instance is updated """
         self.updated_at = datetime.now()
