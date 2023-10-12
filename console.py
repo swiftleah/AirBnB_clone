@@ -21,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel and saves it (to the JSON file)"""
+        """Creates a new instance of BaseModel and saves it"""
         if not arg:
             print("** class name missing **")
             return
@@ -33,8 +33,6 @@ class HBNBCommand(cmd.Cmd):
             new_instance = eval(class_name)()
             new_instance.save()
             print(new_instance.id)
-            storage.new(new_instance)
-            storage.save()
         except NameError:
             print("** class doesn't exist **")
 
@@ -62,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id (save the change into the JSON file)"""
+        """Deletes an instance based on the class name and id"""
         args = arg.split()
         if not arg:
             print("** class name missing **")
@@ -108,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, arg):
-        """Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file)"""
+        """Updates an instance based on the class name and id by adding or updating attributes"""
         args = arg.split()
         if not arg:
             print("** class name missing **")
