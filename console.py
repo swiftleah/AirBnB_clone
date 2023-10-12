@@ -33,6 +33,8 @@ class HBNBCommand(cmd.Cmd):
             new_instance = eval(class_name)()
             new_instance.save()
             print(new_instance.id)
+            storage.new(new_instance)
+            storage.save()
         except NameError:
             print("** class doesn't exist **")
 
