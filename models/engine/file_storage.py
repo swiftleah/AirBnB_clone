@@ -42,3 +42,10 @@ class FileStorage:
                     self.new(eval(class_name)(**objects))
         except FileNotFoundError:
             return
+
+    def classes(self):
+        """ Returns a dict of available classes for serialization"""
+        return {
+                "BaseModel": BaseModel,
+                "user": User
+                }
