@@ -43,7 +43,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, arg):
-        """Prints the string representation of an instance based on the class name and id"""
+        """Prints the string representation of an instance
+        based on the class name and id"""
         args = arg.split()
         if not args:
             print("** class name missing **")
@@ -73,7 +74,8 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             class_name = args[0]
-            if class_name not in [cls.__name__ for cls in BaseModel.__subclasses__()]:
+            if class_name not in [cls.__name__ for
+                                  cls in BaseModel.__subclasses__()]:
                 print("** class doesn't exist **")
                 return
             if len(args) < 2:
@@ -90,7 +92,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_all(self, arg):
-        """Prints all string representation of all instances based or not on the class name"""
+        """Prints all string representation of all
+        instances based or not on the class name"""
         args = arg.split()
         instances = []
         if not arg:
@@ -100,7 +103,8 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             class_name = args[0]
-            class_names = [cls.__name__.lower() for cls in BaseModel.__subclasses__()]
+            class_names = [cls.__name__.lower() for
+                           cls in BaseModel.__subclasses__()]
             if class_name.lower() not in class_names:
                 print("** class doesn't exist **")
                 return
@@ -112,14 +116,16 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, arg):
-        """Updates an instance based on the class name and id by adding or updating attributes"""
+        """Updates an instance based on the class name
+        and id by adding or updating attributes"""
         args = arg.split()
         if not arg:
             print("** class name missing **")
             return
         try:
             class_name = args[0]
-            if class_name not in [cls.__name__ for cls in BaseModel.__subclasses__()]:
+            if class_name not in [cls.__name__ for
+                                  cls in BaseModel.__subclasses__()]:
                 print("** class doesn't exist **")
                 return
             if len(args) < 2:
@@ -143,6 +149,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         except NameError:
             print("** class doesn't exist **")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
