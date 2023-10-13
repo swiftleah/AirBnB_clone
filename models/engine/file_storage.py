@@ -37,12 +37,15 @@ class FileStorage:
         try:
             with open(self.__file_path) as f:
                 data = json.load(f)
-                for objects in data.values():
-                    class_name = objects["__class__"]
-                    del objects["__class__"]
-                    self.new(eval(class_name)(**objects))
+                for key, obj_data in data.items():
+                    class_name = obj_data["__class__"]
+                    if class_name in self.classes():
+                        obj = self.classes()[class_name](**obj_data)
+                        self.__objects[key] = obj
         except FileNotFoundError:
             return
+        except Exception as e:
+            print(f"Error loading data from JSON: {e}")
 
     def classes(self):
         """ Returns a dict of available classes for serialization"""
