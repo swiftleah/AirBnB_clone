@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" File Storage class that will serialize instances to JSON file and deserialize to instances """
+""" File Storage class that will serialize instances to JSON file
+and deserialize to instances """
 
 
 import json
@@ -14,7 +15,6 @@ class FileStorage:
     class name and id ) """
     __file_path = "file.json"
     __objects = {}
-
 
     def all(self):
         """ returns dictionary of private attribute objects """
