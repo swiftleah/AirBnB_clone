@@ -1,27 +1,30 @@
 #!/usr/bin/python3
+""" entry point for our command interpreter using built-in cmd module """
+
 
 import cmd
 from models.base_model import BaseModel
 from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     allowed_classes = {"BaseModel"}
 
     def do_quit(self, arg):
-        """Quit command to exit the program"""
+        """ exits program when input is 'quit' """
         return True
 
     def do_EOF(self, arg):
-        """Exit the program"""
+        """ exits program when input is 'EOF' """
         return True
 
     def emptyline(self):
-        """Creates a new line and doesnt preint anything before it"""
+        """ makes sure that an empty line does not execute anything """
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel and saves it"""
+        """ creates new instance of BaseModel, saves it & prints id """
         if not arg:
             print("** class name missing **")
             return
