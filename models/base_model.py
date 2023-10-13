@@ -26,9 +26,11 @@ class BaseModel:
                     continue
                 setattr(self, key, value)
             if 'created_at' in kwargs:
-                self.created_at = datetime.strptime(kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
+                self.created_at = datetime.strptime(kwargs['created_at']
+                                                    "%Y-%m-%dT%H:%M:%S.%f")
             if 'updated_at' in kwargs:
-                self.updated_at = datetime.strptime(kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
+                self.updated_at = datetime.strptime(kwargs['updated_at'],
+                                                    "%Y-%m-%dT%H:%M:%S.%f")
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -45,9 +47,11 @@ class BaseModel:
         added key class with class name of specific object.
         created_at and updated_at are converted with ISO format """
         if not isinstance(self.created_at, datetime):
-            self.created_at = datetime.strptime(self.created_at, "%Y-%m-%dT%H:%M:%S.%f")
+            self.created_at = datetime.strptime(self.created_at,
+                                                "%Y-%m-%dT%H:%M:%S.%f")
         if not isinstance(self.updated_at, datetime):
-            self.updated_at = datetime.strptime(self.updated_at, "%Y-%m-%dT%H:%M:%S.%f")
+            self.updated_at = datetime.strptime(self.updated_at,
+                                                "%Y-%m-%dT%H:%M:%S.%f")
 
         class_name = self.__class__.__name__
         instance_dict = self.__dict__
@@ -58,7 +62,6 @@ class BaseModel:
         instance_dict['created_at'] = format_created_at
         instance_dict['updated_at'] = format_updated_at
         return instance_dict
-
 
     def __str__(self):
         """ string representation of BaseModel """
