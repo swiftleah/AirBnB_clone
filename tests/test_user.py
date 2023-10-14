@@ -73,3 +73,6 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertEqual("Leah", User1.name)
         self.assertIn("my_number", User1.to_dict())
 
+
+if __name__ == "__main__":
+    unittest.main()
