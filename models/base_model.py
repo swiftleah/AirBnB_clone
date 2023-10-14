@@ -8,18 +8,15 @@ from datetime import datetime
 
 
 class BaseModel:
-    """ class BaseModel
-    assigns UUID to an instance
-    keeps track of time when instance is created
-    and updated """
+    """ class BaseModel that initializes attributes & methods """
+
     def __init__(self, *args, **kwargs):
         """ Defining attributes above.
-        if kwargs not empty: creating instance from
-        dictionary. 'created_at' and 'updated_at' converted into
-        datetime objects using datetime.strptime().
+        Args:
+            *args & **kwargs
+            if **kwargs: creates instance from dict
+        """
 
-        if kwargs empty - creating normal instance where 'id',
-        'created_at' and 'updated_at' is set. """
         time = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             for key, value in kwargs.items():
