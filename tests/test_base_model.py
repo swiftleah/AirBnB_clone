@@ -27,3 +27,13 @@ class TestBaseModel_instances(unittest.TestCase):
         sleep(0.1)
         Model2 = BaseModel()
         self.assertNotEqual(Model1.updated_at, Model2.updated_at)
+
+class TestBaseModel_save(unittest.TestCase):
+    """ tests for 'save' in parent class Base Model """
+
+    def test_save(self):
+        Model = BaseModel()
+        sleep(0.1)
+        first_updated_at = Model.updated_at
+        Model.save()
+        self.assertLess(first_updated_at, Model.updated_at)
