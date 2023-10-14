@@ -16,7 +16,8 @@ class BaseModel:
             *args & **kwargs
             if **kwargs: creates instance from dict
         """
-
+        self.created_at = datetime.now()
+        self.updated_at = self.created_at
         self.id = str(uuid.uuid4())
         time = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
@@ -24,8 +25,6 @@ class BaseModel:
                 if key == "created_at" or key == "updated_at":
                     self.__dict__[key] = datetime.strptime(value, time)
         else:
-            self.created_at = datetime.now()
-           self.updated_at = self.created_at
             models.storage.new(self)
 
     def save(self):
