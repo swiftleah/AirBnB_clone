@@ -52,8 +52,6 @@ class FileStorage:
                         self.__objects[key] = obj
         except FileNotFoundError:
             return
-        except Exception as e:
-            print(f"Error loading data from JSON: {e}")
 
     def classes(self):
         """ Returns a dict of available classes for serialization"""
