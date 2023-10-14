@@ -43,3 +43,33 @@ class TestUser_instances(unittest.TestCase):
     def test_last_name_type(self):
         self.assertEqual(str, type(User.last_name))
 
+class TestUser_save(unittest.TestCase):
+    """ unittesting for save method """
+
+    def test_save(self):
+        User1 = User()
+        sleep(0.05)
+        first_update = User1.updated_at
+        User1.save()
+        self.assertLess(first_update, User1.updated_at)
+
+    def test_save_to_file(self):
+        User1 = User()
+        User1.save()
+        User1id = "User." + User1.id
+        with open("file.json", "r") as f:
+            self.assertIn(User1id, f.read())
+
+class TestUser_to_dict(unittest.TestCase):
+    """ unittesting to_dict for User """
+
+    def test_dict_type(self):
+        self.assertTrue(dict, type(User().to_dict()))
+
+    def test_dict_attributes(self):
+        User1 = User()
+        User1.name = "Leah"
+        User1.my_number = 99
+        self.assertEqual("Leah", User1.name)
+        self.assertIn("my_number", User1.to_dict())
+
