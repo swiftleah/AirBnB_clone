@@ -16,6 +16,13 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
+    def get(self, cls, id):
+        """ Retrieves an object based on class name and id """
+        key = "{}.{}".format(cls, id)
+        if key in self.__objects:
+            return self.__objects[key]
+        return None
+
     def all(self):
         """ returns dictionary of private attribute objects """
         return self.__objects

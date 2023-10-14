@@ -56,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
 
             class_name = args[0]
             obj_id = args[1]
-            key = "{}.{}".format(class_name, obj_id)
+            
             instance = storage.get(class_name, obj_id)
             if instance is not None:
                 print(instance)
