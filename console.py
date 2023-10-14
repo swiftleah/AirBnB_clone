@@ -57,9 +57,9 @@ class HBNBCommand(cmd.Cmd):
             class_name = args[0]
             obj_id = args[1]
             key = "{}.{}".format(class_name, obj_id)
-
-            if key in storage.all():
-                print(storage.all()[key])
+            instance = storage.get(class_name, obj_id)
+            if instance is not None:
+                print(instance)
             else:
                 print("** no instance found **")
 
@@ -83,8 +83,9 @@ class HBNBCommand(cmd.Cmd):
                 return
             obj_id = args[1]
             key = "{}.{}".format(class_name, obj_id)
-            if key in storage.all():
-                del storage.all()[key]
+
+            success = storage.delete(class_name, obj_id)
+            if success:
                 storage.save()
             else:
                 print("** no instance found **")
@@ -95,25 +96,16 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all
         instances based or not on the class name"""
         args = arg.split()
-        instances = []
-        if not arg:
-            for key, value in storage.all().items():
-                instances.append(str(value))
-            print(instances)
-            return
-        try:
+        if not args:
+            instances = storage.all()
+        else:
             class_name = args[0]
-            class_names = [cls.__name__.lower() for
-                           cls in BaseModel.__subclasses__()]
-            if class_name.lower() not in class_names:
+            if class_name not in self.allowed_classes:
                 print("** class doesn't exist **")
                 return
-            for key, value in storage.all().items():
-                if class_name.lower() in key.lower():
-                    instances.append(str(value))
-            print(instances)
-        except NameError:
-            print("** class doesn't exist **")
+            instances = {k: v for k, v in storage.all().items()
+                         if k.startswith(class_name)}
+        print([str(v) for v in instances.values()])
 
     def do_update(self, arg):
         """Updates an instance based on the class name
@@ -123,17 +115,14 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         try:
-            class_name = args[0]
-            if class_name not in [cls.__name__ for
-                                  cls in BaseModel.__subclasses__()]:
-                print("** class doesn't exist **")
-                return
             if len(args) < 2:
                 print("** instance id missing **")
                 return
+            class_name = args[0]
             obj_id = args[1]
-            key = "{}.{}".format(class_name, obj_id)
-            if key in storage.all():
+            key = f"{class_name}.{obj_id}"
+            instance = storage.get(class_name, obj_id)
+            if instance is not None:
                 if len(args) < 3:
                     print("** attribute name missing **")
                     return
@@ -142,7 +131,6 @@ class HBNBCommand(cmd.Cmd):
                     return
                 attribute_name = args[2]
                 attribute_value = args[3]
-                instance = storage.all()[key]
                 setattr(instance, attribute_name, attribute_value)
                 instance.save()
             else:
