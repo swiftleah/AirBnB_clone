@@ -9,6 +9,7 @@ from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
+    """ entry point for shell """
     prompt = "(hbnb) "
     allowed_classes = {"BaseModel", "User"}
 
