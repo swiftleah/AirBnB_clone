@@ -141,9 +141,5 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
 
-if __name__ == "__main__":
-    try:
-        HBNBCommand().cmdloop()
-    except KeyboardInterrupt:
-        print("Exiting...")
-        sys.exit(0)
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
