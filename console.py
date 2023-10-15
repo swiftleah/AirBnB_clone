@@ -75,18 +75,18 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             class_name = args[0]
-            if class_name not in [cls.__name__ for
-                    cls in BaseModel.__subclasses__()]:
+            if class_name not in self.allowed_classes:
                 print("** class doesn't exist **")
                 return
             if len(args) < 2:
                 print("** instance id missing **")
                 return
             obj_id = args[1]
-            key = "{}.{}".format(class_name, obj_id)
 
-            success = storage.delete(class_name, obj_id)
-            if success:
+            instance = storage.get(class_name, obj_id)
+            if instance:
+                key = "{}.{}".format(class_name, obj_id)
+                storage.delete(class_name, obj_id)
                 storage.save()
             else:
                 print("** no instance found **")
