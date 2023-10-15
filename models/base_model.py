@@ -20,7 +20,7 @@ class BaseModel:
         self.updated_at = self.created_at
         self.id = str(uuid.uuid4())
         time = "%Y-%m-%dT%H:%M:%S.%f"
-        if kwargs:
+        if len(kwargs) > 0:
             for key, value in kwargs.items():
                 if key == '__class__':
                     continue
