@@ -6,6 +6,7 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
+import sys
 
 
 class HBNBCommand(cmd.Cmd):
@@ -141,4 +142,8 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    HBNBCommand().cmdloop()
+    try:
+        HBNBCommand().cmdloop()
+    except KeyboardInterrupt:
+        print("Exiting...")
+        sys.exit(0)
