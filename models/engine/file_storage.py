@@ -45,12 +45,6 @@ class FileStorage:
         with open(self.__file_path, "w", encoding='utf-8') as f:
             json.dump(data, f)
 
-    def delete(self, cls, id):
-        """ Deletes an instance based on class name and id """
-        key = "{}.{}".format(cls, id)
-        if key in self.__objects:
-            del self.__objects[key]
-
     def reload(self):
         """ deserializes JSON file to __objects """
         try:
