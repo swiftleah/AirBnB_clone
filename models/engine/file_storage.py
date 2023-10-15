@@ -24,37 +24,37 @@ class FileStorage:
     def get(self, cls, id):
         """ Retrieves an object based on class name and id """
         key = "{}.{}".format(cls, id)
-        if key in FileStorage.__objects:
-            return FileStorage.__objects[key]
+        if key in self.__objects:
+            return self.__objects[key]
         return None
 
     def all(self):
         """ returns dictionary of private attribute objects """
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """ sets in __objects the obj with key <obj class name>.id """
         key = f"{obj.__class__.__name__}.{obj.id}"
-        FileStorage.__objects[key] = obj
+        self.__objects[key] = obj
 
     def save(self):
         """ serializes __objects to JSON file (__file_path) """
         data = {}
-        for key, obj in FileStorage.__objects.items():
+        for key, obj in self.__objects.items():
             data[key] = obj.to_dict()
-        with open(FileStorage.__file_path, "w", encoding='utf-8') as f:
+        with open(self.__file_path, "w", encoding='utf-8') as f:
             json.dump(data, f)
 
     def reload(self):
         """ deserializes JSON file to __objects """
         try:
-            with open(FileStorage.__file_path) as f:
+            with open(self.__file_path) as f:
                 data = json.load(f)
                 for key, obj_data in data.items():
                     class_name = obj_data["__class__"]
-                    if class_name in FileStorage.classes():
-                        obj = FileStorage.classes()[class_name](**obj_data)
-                        FileStorage.__objects[key] = obj
+                    if class_name in self.classes():
+                        obj = self.classes()[class_name](**obj_data)
+                        self.__objects[key] = obj
         except FileNotFoundError:
             return
 
