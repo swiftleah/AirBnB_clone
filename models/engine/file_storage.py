@@ -72,15 +72,9 @@ class FileStorage:
         return {
                 "BaseModel": BaseModel,
                 "user": User,
-<<<<<<< HEAD
                 "Place": Place,
                 "State": State,
                 "City": City,
                 "Amenity": Amenity,
-=======
-                "City": City,
-                "Amenity": Amenity,
-                "Place": Place,
->>>>>>> 7f99640c2521577f7042b8ed26e6cc10fff83821
                 "Review": Review
                 }
