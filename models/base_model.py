@@ -22,6 +22,8 @@ class BaseModel:
         time = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             for key, value in kwargs.items():
+                if key == '__class__':
+                    continue
                 if key == "created_at" or key == "updated_at":
                     self.__dict__[key] = datetime.strptime(value, time)
                 else:
@@ -48,4 +50,5 @@ class BaseModel:
 
     def __str__(self):
         """ string representation of BaseModel """
-        return f'({self.__class__.__name__}, {self.id}, {self.__dict__})'
+        nameclass = self.__class__.__name__
+        return "[{}] ({}) {}".format(nameclass, self.id, self.__dict__)
