@@ -55,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
                 return
 
-            class_name = args[0]
+            class_name = arg[0]
             obj_id = args[1]
 
             instance = storage.get(class_name, obj_id)

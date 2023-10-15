@@ -20,6 +20,15 @@ class FileStorage:
     class name and id ) """
     __file_path = "file.json"
     __objects = {}
+    classes = {
+            "BaseModel": BaseModel,
+            "user": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
+            }
 
     def get(self, cls, id):
         """ Retrieves an object based on class name and id """
@@ -66,10 +75,3 @@ class FileStorage:
                         self.__objects[key] = obj
         except FileNotFoundError:
             return
-
-    def classes(self):
-        """ Returns a dict of available classes for serialization"""
-        return {
-                "BaseModel": BaseModel,
-                "user": User
-                }
