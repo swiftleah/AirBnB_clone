@@ -71,5 +71,10 @@ class FileStorage:
         """ Returns a dict of available classes for serialization"""
         return {
                 "BaseModel": BaseModel,
-                "user": User
+                "user": User,
+                "Place": Place,
+                "State": State,
+                "City": City,
+                "Amenity": Amenity,
+                "Review": Review
                 }
