@@ -26,6 +26,7 @@ class TestFileStorage_instances(unittest.TestCase):
     def test_initialization(self):
         self.assertTrue(type(models.storage), FileStorage)
 
+
 class TestFileStorage_public_methods(unittest.TestCase):
     """ unittests for methods of File_Storage """
 

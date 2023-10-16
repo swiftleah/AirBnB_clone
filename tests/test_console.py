@@ -18,13 +18,16 @@ class TestHBNBCommand_prompting(unittest.TestCase):
     def test_prompt_str(self):
         self.assertTrue("(hbnb) ", HBNBCommand.prompt)
 
+
 class TestHBNBCommand_help(unittest.TestCase):
     """ unittesting for command help on shell """
 
     def test_help_EOF(self):
+        exitmsg = "exits program when input is 'EOF'"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help EOF"))
-            self.assertEqual("exits program when input is 'EOF'", output.getvalue().strip())
+            self.assertEqual(exitmsg, output.getvalue().strip())
+
 
 class TestHBNBCommand_exit(unittest.TestCase):
     """ unittesting for exit command in shell """
@@ -38,15 +41,16 @@ class TestHBNBCommand_exit(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertTrue(HBNBCommand().onecmd("EOF"))
 
+
 class TestHBNBCommand_create(unittest.TestCase):
     """ unittesting 'create' command which creates instance based
         off parent class BaseModel """
 
     def test_create_no_class_name_given(self):
+        errormsg = "** class name missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create"))
-            self.assertEqual("** class name missing **", output.getvalue().strip())
-
+            self.assertEqual(errormsg, output.getvalue().strip())
 
 
 if __name__ == "__main__":
