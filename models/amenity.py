@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-""" Inherits from parent class 'BaseModel' 
+""" Inherits from parent class 'BaseModel'
 """
 from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
-    """ Amenity class that inherits from BaseModel 
+    """ Amenity class that inherits from BaseModel
     """
     name = ""
