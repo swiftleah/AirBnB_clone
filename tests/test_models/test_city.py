@@ -5,7 +5,8 @@
 import os
 import unittest
 from time import sleep
-from models.city import city
+from models.city import City
+import models
 
 
 class TestCity_instances(unittest.TestCase):

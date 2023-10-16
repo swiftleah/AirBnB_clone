@@ -5,6 +5,7 @@
 import os
 import unittest
 from time import sleep
+import models
 from models.place import Place
 
 

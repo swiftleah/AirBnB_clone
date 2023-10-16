@@ -4,6 +4,7 @@
 
 import unittest
 import os
+import models
 from time import sleep
 from models.state import State
 
