@@ -28,6 +28,7 @@ class TestBaseModel_instances(unittest.TestCase):
         Model2 = BaseModel()
         self.assertNotEqual(Model1.updated_at, Model2.updated_at)
 
+
 class TestBaseModel_save(unittest.TestCase):
     """ tests for 'save' in parent class BaseModel """
 
@@ -37,6 +38,7 @@ class TestBaseModel_save(unittest.TestCase):
         first_updated_at = Model.updated_at
         Model.save()
         self.assertLess(first_updated_at, Model.updated_at)
+
 
 class TestBaseModel_to_dict(unittest.TestCase):
     """ tests for 'to_dict' in parent class BaseModel """
@@ -50,6 +52,7 @@ class TestBaseModel_to_dict(unittest.TestCase):
 
         self.assertEqual(str, type(M.to_dict()["created_at"]))
         self.assertEqual(str, type(M.to_dict()["updated_at"]))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -8,6 +8,7 @@ import models
 from time import sleep
 from models.state import State
 
+
 class testState_instances(unittest.TestCase):
     """ unittesting for instances of State.py """
 

@@ -15,19 +15,19 @@ class TestUser_instances(unittest.TestCase):
 
     def test_different_ids(self):
         Person1 = User()
-        sleep (0.02)
+        sleep(0.02)
         Person2 = User()
         self.assertNotEqual(Person1.id, Person2.id)
 
     def test_different_creation_times(self):
         Person1 = User()
-        sleep (0.02)
+        sleep(0.02)
         Person2 = User()
         self.assertLess(Person1.created_at, Person2.created_at)
 
     def test_different_updated_times(self):
         Person1 = User()
-        sleep (0.02)
+        sleep(0.02)
         Person2 = User()
         self.assertLess(Person1.updated_at, Person2.updated_at)
 
@@ -42,6 +42,7 @@ class TestUser_instances(unittest.TestCase):
 
     def test_last_name_type(self):
         self.assertEqual(str, type(User.last_name))
+
 
 class TestUser_save(unittest.TestCase):
     """ unittesting for save method """
@@ -59,6 +60,7 @@ class TestUser_save(unittest.TestCase):
         User1id = "User." + User1.id
         with open("file.json", "r") as f:
             self.assertIn(User1id, f.read())
+
 
 class TestUser_to_dict(unittest.TestCase):
     """ unittesting to_dict for User """
