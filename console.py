@@ -136,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
                 setattr(instance, attribute_name, attribute_value)
                 instance.save()
             else:
-                print("** no instance found **")
+                print("** class doesn't exist **")
         except NameError:
             print("** class doesn't exist **")
 
