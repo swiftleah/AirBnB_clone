@@ -7,12 +7,24 @@ from models.base_model import BaseModel
 from models import storage
 from models.user import User
 import sys
-
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """ entry point for shell """
     prompt = "(hbnb) "
-    allowed_classes = {"BaseModel", "User"}
+    allowed_classes = {
+            "BaseModel",
+            "User",
+            "State",
+            "City",
+            "Place",
+            "Amenity",
+            "Review"
+            }
 
     def do_quit(self, arg):
         """ exits program when input is 'quit' """
@@ -136,7 +148,7 @@ class HBNBCommand(cmd.Cmd):
                 setattr(instance, attribute_name, attribute_value)
                 instance.save()
             else:
-                print("** class doesn't exist **")
+                print("** no instance found **")
         except NameError:
             print("** class doesn't exist **")
 
